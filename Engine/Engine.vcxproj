@@ -169,18 +169,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\Main.cpp" />
-    <ClCompile Include="Engine\Camera.cpp" />
+    <ClCompile Include="Engine\Animation.cpp" />
+    <ClCompile Include="Engine\Objects\Camera.cpp" />
     <ClCompile Include="Engine\SystemLogic\Collision.cpp" />
-    <ClCompile Include="Engine\GameObject.cpp" />
+    <ClCompile Include="Engine\Objects\GameObject.cpp" />
     <ClCompile Include="Engine\SystemLogic\SystemManager.cpp" />
     <ClCompile Include="Engine\SystemLogic\InputAction.cpp" />
     <ClCompile Include="Engine\FileOperations\FileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Camera.h" />
+    <ClInclude Include="Engine\Animation.h" />
+    <ClInclude Include="Engine\Objects\Camera.h" />
     <ClInclude Include="Engine\SystemLogic\Collision.hpp" />
     <ClInclude Include="Engine\Engine.h" />
-    <ClInclude Include="Engine\GameObject.h" />
+    <ClInclude Include="Engine\Objects\GameObject.h" />
     <ClInclude Include="Engine\SystemLogic\SystemManager.h" />
     <ClInclude Include="Engine\SystemLogic\InputAction.h" />
     <ClInclude Include="Engine\FileOperations\FileManager.h" />

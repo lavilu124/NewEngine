@@ -18,7 +18,7 @@
     <ClCompile Include="App\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\GameObject.cpp">
+    <ClCompile Include="Engine\Objects\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\SystemLogic\Collision.cpp">
@@ -33,7 +33,10 @@
     <ClCompile Include="Engine\FileOperations\FileManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Camera.cpp">
+    <ClCompile Include="Engine\Objects\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +44,7 @@
     <ClInclude Include="Engine\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\GameObject.h">
+    <ClInclude Include="Engine\Objects\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\SystemLogic\Collision.hpp">
@@ -56,7 +59,10 @@
     <ClInclude Include="Engine\FileOperations\FileManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Camera.h">
+    <ClInclude Include="Engine\Objects\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

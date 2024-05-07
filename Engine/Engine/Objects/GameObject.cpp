@@ -1,5 +1,6 @@
 #include "GameObject.h"
-#include "SystemLOgic//SystemManager.h"
+#include "..//SystemLogic//SystemManager.h"
+
 
 GameObject::GameObject(const sf::Sprite& ObjectSprite, Collision::collisionLayer Layer) 
 	: m_objectSprite(ObjectSprite), m_layer(Layer), m_rotation(ObjectSprite.getRotation()), m_position(ObjectSprite.getPosition()), m_scale(ObjectSprite.getScale())
@@ -12,17 +13,13 @@ GameObject::GameObject(const sf::Sprite& ObjectSprite, Collision::collisionLayer
 	SetCenter();
 }
 
+
 void GameObject::Flip() {
     m_scale = sf::Vector2f(m_scale.x * -1, m_scale.y);
 }
 
 bool GameObject::IsFacingRight() {
     return m_scale.x >= 0;
-}
-
-
-const sf::Sprite& GameObject::GetSprite() const {
-    return m_objectSprite;
 }
 
 void GameObject::SetCenter() {
@@ -56,10 +53,6 @@ void GameObject::SetCenter() {
     m_objectSprite.setOrigin(sf::Vector2f(centerX, centerY));
 }
 
-void GameObject::SetSprite(const sf::Sprite& Sprite) {
-    m_objectSprite = Sprite;
-}
-
 void GameObject::Delete() {
     if (m_index >= 0 && m_index < SystemManager::objects.size()) {
         // Use unique_ptr to manage memory and set it to nullptr after deletion
@@ -73,7 +66,6 @@ void GameObject::Delete() {
 void GameObject::OnCollision(GameObject* HitInfo) {}
 
 void GameObject::OnTrigger(GameObject* HitInfo) {}
-
 
 void GameObject::HandlePositionChange(sf::Vector2f NewPosition) {
     m_objectSprite.setPosition(NewPosition);
@@ -196,20 +188,25 @@ void GameObject::SetRotation(float NewRotation) {
     }
 }
 
+void GameObject::SetSprite(const sf::Sprite& Sprite) {
+    m_objectSprite = Sprite;
+}
 
+const sf::Sprite& GameObject::GetSprite() const {
+    return m_objectSprite;
+}
 
 int GameObject::GetIndex() const {
     return m_index;
 }
 
+Collision::collisionLayer GameObject::GetLayer() const {
+    return m_layer;
+}
 
 void GameObject::Start() {
 
 }
 
 void GameObject::Update(float DeltaTime) {
-}
-
-Collision::collisionLayer GameObject::GetLayer() const {
-	return m_layer;
 }

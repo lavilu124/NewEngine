@@ -2,7 +2,8 @@
 #define Engine
 
 #include "SystemLogic//SystemManager.h"
-#include "Camera.h"
+#include "Objects/Camera.h"
+#
 
 #endif // !Engine
 

@@ -2,20 +2,38 @@
 
 std::vector<GameObject*> SystemManager::objects;
 
+sf::Clock SystemManager::clock;
+sf::Time SystemManager::deltaTimeT;
+
+float SystemManager::deltaTime = 0;
+
+void SystemManager::StartUp() {
+    FileManager::SetPaths();
+    FileManager::LoadInput();
+    
+    deltaTime = 0;
+}
+
 void SystemManager::Start() {
 	if (objects.empty()) return;
+
     for (std::vector<GameObject*>::iterator it = objects.begin(); it != objects.end(); ++it)
 		(*it)->Start();
 }
 
-void SystemManager::Update(float DeltaTime) {
+void SystemManager::Update() {
 	if (objects.empty()) return;
+
 	for (std::vector<GameObject*>::iterator it = objects.begin(); it != objects.end(); ++it)
-		(*it)->Update(DeltaTime);
+		(*it)->Update(deltaTime);
+
+    deltaTimeT = clock.restart();
+    deltaTime = deltaTimeT.asSeconds();
 }
 
 void SystemManager::Render(sf::RenderWindow& Window) {
 	if (objects.empty()) return;
+
 	for (std::vector<GameObject*>::iterator it = objects.begin(); it != objects.end(); ++it)
 		Window.draw((*it)->GetSprite());
 }

@@ -1,24 +1,19 @@
  #pragma once
 #include <SFML/Graphics.hpp>
-#include "SystemLogic//Collision.hpp"
+#include "..//SystemLogic//Collision.hpp"
 
 class GameObject
 {
 public:
 	GameObject(const sf::Sprite& ObjectSprite, Collision::collisionLayer Layer = Collision::collisionLayer::COLLIDER);
 
-	virtual void Start();
+	int GetIndex() const;
 
-	virtual void Update(float DeltaTime);
-
-	void Delete();
+	bool IsFacingRight();
 
 	void Flip();
 
-	int GetIndex() const;
-
-	const sf::Sprite& GetSprite() const;
-	void SetSprite(const sf::Sprite& Sprite);
+	void Delete();
 
 	sf::Vector2f GetPosition() const;
 	void SetPosition(sf::Vector2f NewPosition);
@@ -29,9 +24,13 @@ public:
 	float GetRotation() const;
 	void SetRotation(float Rotation);
 
+	const sf::Sprite& GetSprite() const;
+	void SetSprite(const sf::Sprite& Sprite);
+
 	Collision::collisionLayer GetLayer() const;
 
-	bool IsFacingRight();
+	virtual void Start();
+	virtual void Update(float DeltaTime);
 
 private:
 	void SetCenter();

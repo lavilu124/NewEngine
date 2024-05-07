@@ -2,57 +2,55 @@
 
 #define WindowWidth 960
 #define WindowHeight 540
+#define MAX_FPS 144
+
+void InputFunc(sf::RenderWindow& window);
+void Display(sf::RenderWindow& window);
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(WindowWidth, WindowHeight), "new game", sf::Style::Default);
+	window.setFramerateLimit(MAX_FPS);
 
-	sf::Clock clock;
-	sf::Time deltaTimeT;
+	Camera MainCam(WindowWidth, WindowHeight);
+	MainCam.SetCam(window);
 
-	float deltaTime = 0;
-	
+	SystemManager::StartUp();
 
-	const sf::Vector2f test = sf::Vector2f(WindowWidth, WindowHeight);
-	Camera camera(test);
-	camera.SetCam(window);
-	camera.position = sf::Vector2f(0, 0);
+	/*GameObject Object1 = GameObject(FileManager::sprites["run0.png"]);
+	Object1.SetPosition(sf::Vector2f(960 / 2, 540 / 2));
 
-
-	FileManager::SetPaths();
-	FileManager::LoadInput();
-
-	sf::Sprite sprite(FileManager::sprites["run0.png"]);
-	sprite.setPosition(0, 0);
+	GameObject Object2 = GameObject(FileManager::sprites["axe.png"]);*/
 
 	SystemManager::Start();
 
 	while (window.isOpen()) {
-		sf::Event event;
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
-				window.close();
-			}
-			else if (event.type == sf::Event::KeyPressed && event.key.code == 22) {
-				//camera.pov++; 
-			}
-			else if (event.type == sf::Event::KeyPressed && event.key.code == 19) {
-				//camera.pov--;
-			}
-			SystemManager::RunInput(event);
-		}
+		InputFunc(window);
 
-		SystemManager::Update(deltaTime);
+		SystemManager::Update();
 
-		deltaTimeT = clock.restart();
-		deltaTime = deltaTimeT.asSeconds();
+		MainCam.Update();
 
-		window.clear();
-		
-		SystemManager::Render(window);
-		window.draw(sprite);
-
-		window.display();
+		Display(window);
 	}
 
 	return 0;
+}
+
+void InputFunc(sf::RenderWindow& window) {
+	sf::Event event;
+	while (window.pollEvent(event)) {
+		if (event.type == sf::Event::Closed) {
+			window.close();
+		}
+
+		SystemManager::RunInput(event);
+	}
+}
+
+void Display(sf::RenderWindow& window) {
+	window.clear();
+
+	SystemManager::Render(window);
+
+	window.display();
 }

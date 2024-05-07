@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include <filesystem>
+
 using std::filesystem::directory_iterator;
 
 std::map <std::string, Input::InputAction> FileManager::inputs;

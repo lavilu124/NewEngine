@@ -1,13 +1,15 @@
 #pragma once
-#include "../GameObject.h"
+#include "../Objects/GameObject.h"
 #include "../FileOperations/FileManager.h"
 #include <vector>
 
 class SystemManager
 {
 public:
+	static void StartUp();
+
 	static void Start();
-	static void Update(float DeltaTime);
+	static void Update();
 	static void Render(sf::RenderWindow& Window);
 
 	static void CreateGameObject(const GameObject& Ob);
@@ -18,5 +20,10 @@ public:
 
 public:
 	static std::vector <GameObject*> objects;
+
+	static sf::Clock clock;
+	static sf::Time deltaTimeT;
+
+	static float deltaTime;
 };
 
