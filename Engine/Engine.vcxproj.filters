@@ -15,54 +15,66 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="App\Main.cpp">
+    <ClCompile Include="src\Engine\Objects\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Objects\GameObject.cpp">
+    <ClCompile Include="src\Engine\SystemLogic\Collision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\SystemLogic\Collision.cpp">
+    <ClCompile Include="src\Engine\SystemLogic\SystemManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\SystemLogic\SystemManager.cpp">
+    <ClCompile Include="src\Engine\SystemLogic\InputAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\SystemLogic\InputAction.cpp">
+    <ClCompile Include="src\Engine\FileOperations\FileManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\FileOperations\FileManager.cpp">
+    <ClCompile Include="src\Engine\Objects\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Objects\Camera.cpp">
+    <ClCompile Include="src\Engine\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Animation.cpp">
+    <ClCompile Include="src\App\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\SystemLogic\LightSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\App\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Engine.h">
+    <ClInclude Include="src\Engine\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Objects\GameObject.h">
+    <ClInclude Include="src\Engine\Objects\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\SystemLogic\Collision.hpp">
+    <ClInclude Include="src\Engine\SystemLogic\Collision.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\SystemLogic\SystemManager.h">
+    <ClInclude Include="src\Engine\SystemLogic\SystemManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\SystemLogic\InputAction.h">
+    <ClInclude Include="src\Engine\SystemLogic\InputAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\FileOperations\FileManager.h">
+    <ClInclude Include="src\Engine\FileOperations\FileManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Objects\Camera.h">
+    <ClInclude Include="src\Engine\Objects\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Animation.h">
+    <ClInclude Include="src\Engine\Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\SystemLogic\LightSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\App\App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

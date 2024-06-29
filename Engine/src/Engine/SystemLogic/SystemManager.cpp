@@ -1,9 +1,11 @@
 #include "SystemManager.h"
 
+
 std::vector<GameObject*> SystemManager::objects;
 
 sf::Clock SystemManager::clock;
 sf::Time SystemManager::deltaTimeT;
+
 
 float SystemManager::deltaTime = 0;
 
@@ -12,6 +14,7 @@ void SystemManager::StartUp() {
     FileManager::LoadInput();
     
     deltaTime = 0;
+
 }
 
 void SystemManager::Start() {
@@ -31,24 +34,24 @@ void SystemManager::Update() {
     deltaTime = deltaTimeT.asSeconds();
 }
 
-void SystemManager::Render(sf::RenderWindow& Window) {
-	if (objects.empty()) return;
+void SystemManager::Render(sf::RenderWindow& window) {
 
 	for (std::vector<GameObject*>::iterator it = objects.begin(); it != objects.end(); ++it)
-		Window.draw((*it)->GetSprite());
+		window.draw((*it)->GetSprite());
+
 }
 
-void SystemManager::CreateGameObject(const GameObject& Ob) {
-    objects.push_back(const_cast<GameObject*>(&Ob));
+void SystemManager::CreateGameObject(const GameObject& ob) {
+    objects.push_back(const_cast<GameObject*>(&ob));
     objects.shrink_to_fit();
 }
 
-bool SystemManager::CheckForCollision(sf::Sprite Sprite, int index, Collision::collisionLayer LayerToCollideWith, GameObject* CollideInfo) {
+bool SystemManager::CheckForCollision(sf::Sprite sprite, int index, Collision::collisionLayer layerToCollideWith, GameObject* collideInfo) {
     for (int i = 0; i < objects.size(); ++i) {
-        if (i != index && (objects[i]->GetLayer() == LayerToCollideWith || (LayerToCollideWith == Collision::ALL && objects[i]->GetLayer() < 6))) {
-            if (Collision::PixelPerfectCollision(Sprite, objects[i]->GetSprite())) {
-                if (CollideInfo != nullptr) {
-                    CollideInfo = objects[i];
+        if (i != index && (objects[i]->GetLayer() == layerToCollideWith || (layerToCollideWith == Collision::ALL && objects[i]->GetLayer() < 6))) {
+            if (Collision::PixelPerfectCollision(sprite, objects[i]->GetSprite())) {
+                if (collideInfo != nullptr) {
+                    collideInfo = objects[i];
                 }
                 return true;
             }

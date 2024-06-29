@@ -1,6 +1,7 @@
 #pragma once
 #include "../Objects/GameObject.h"
 #include "../FileOperations/FileManager.h"
+#include "LightSystem.h"
 #include <vector>
 
 class SystemManager
