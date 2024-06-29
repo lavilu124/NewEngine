@@ -1,4 +1,5 @@
 #include "..//Engine/Engine.h"
+#include <iostream>
 
 #define WindowWidth 960
 #define WindowHeight 540
@@ -11,15 +12,10 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(WindowWidth, WindowHeight), "new game", sf::Style::Default);
 	window.setFramerateLimit(MAX_FPS);
 
-	Camera MainCam(WindowWidth, WindowHeight);
-	MainCam.SetCam(window);
+	Camera mainCam(WindowWidth, WindowHeight);
+	mainCam.SetCam(window);
 
 	SystemManager::StartUp();
-
-	/*GameObject Object1 = GameObject(FileManager::sprites["run0.png"]);
-	Object1.SetPosition(sf::Vector2f(960 / 2, 540 / 2));
-
-	GameObject Object2 = GameObject(FileManager::sprites["axe.png"]);*/
 
 	SystemManager::Start();
 
@@ -28,7 +24,7 @@ int main() {
 
 		SystemManager::Update();
 
-		MainCam.Update();
+		mainCam.Update();
 
 		Display(window);
 	}
@@ -40,6 +36,9 @@ void InputFunc(sf::RenderWindow& window) {
 	sf::Event event;
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
+			window.close();
+		}
+		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 			window.close();
 		}
 

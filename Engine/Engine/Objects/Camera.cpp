@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include <iostream>
 
 Camera::Camera(const sf::Vector2f WinodwSize) : m_windowSize(WinodwSize) {
 	zoom = 1;
@@ -60,6 +61,9 @@ void Camera::Update() {
 	}
 
 	m_view.setRotation(rotation);
+	if (zoom < 1) {
+		zoom = 1;
+	}
 	m_view.setSize(sf::Vector2f(m_windowSize.x / zoom, m_windowSize.y / zoom));
 	
 	if (m_window != nullptr) {
