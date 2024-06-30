@@ -2,13 +2,13 @@
 #include <map>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "../SystemLogic/InputAction.h"
+#include "../SystemLogic/GameLogic/InputAction.h"
 
 class FileManager
 {
 public:
 	static void LoadInput();
-	static void AddInputFunc(std::string name, std::function<void()> function);
+	static void AddInputFunc(std::string name, void(*function)());
 
 	static void SetPaths();
 
@@ -24,6 +24,6 @@ private:
 	static void LoadAsset(std::string Path, std::string FileName);
 
 private:
-	static std::map <std::string, std::function<void()>> m_functionMap;
+	static std::map <std::string, void(*)()> m_functionMap;
 };
 

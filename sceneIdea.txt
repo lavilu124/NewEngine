@@ -1,0 +1,19 @@
+#pragma once
+#include "..//..//Objects/Camera.h"
+#include "..//..//Objects/GameObject.h"
+
+
+class Scene
+{
+public:
+	Scene(sf::RenderWindow& window, float width, float height);
+	Scene(sf::RenderWindow& window, sf::Vector2f windowSize);
+
+	std::vector<GameObject*> getObjects() const;
+
+public:
+	Camera camera;
+
+private:
+	std::vector<GameObject*> m_objects;
+};

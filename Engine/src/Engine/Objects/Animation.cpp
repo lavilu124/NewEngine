@@ -1,7 +1,5 @@
 #include "Animation.h"
 
-#include <iostream>
-
 //set all animation values in constructor
 Animation::Animation(std::vector<sf::Sprite> AnimationVector, float Speed) {
     this->AnimationVector = AnimationVector;

@@ -3,7 +3,7 @@
 namespace Input {
 
     InputAction::InputAction(inputType type, KeyType key, std::string name, inputPart part,
-        std::function<void()> onInput, std::function<void()> offInput) :
+        void(*onInput)(), void(*offInput)()) :
         m_type(type), m_key(key), m_name(name), m_part(part), m_onInput(onInput), m_offInput(offInput) {
 		
         m_isPressed = false;
@@ -30,9 +30,7 @@ namespace Input {
         }
 
         if (returnValue) {
-            if (m_onInput) {
-                m_onInput();
-            }
+            m_onInput();
         }
         else if (m_offInput) {
             m_offInput();

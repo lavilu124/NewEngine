@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Objects/GameObject.h"
+#include "GameObject.h"
 
 class Animation {
 public:

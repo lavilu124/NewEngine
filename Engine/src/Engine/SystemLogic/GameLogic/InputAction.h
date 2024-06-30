@@ -1,11 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <functional>
 #include <map>
-#include <string>
 #include <variant>
-#include <stdexcept>
 
 namespace Input {
 
@@ -26,7 +23,7 @@ namespace Input {
     class InputAction {
         public:
             explicit InputAction(inputType type, KeyType key, std::string name, inputPart part,
-                std::function<void()> onInput, std::function<void()> offInput = []() {});
+                void (*onInput)(), void(*offInput)() = nullptr);
 
             bool Active(sf::Event event);
 
@@ -44,8 +41,8 @@ namespace Input {
             std::string m_name;
             inputPart m_part;
             bool m_isPressed;
-            std::function<void()> m_onInput;
-            std::function<void()> m_offInput;
+            void (*m_onInput)();
+            void (*m_offInput)();
     };
 
 }

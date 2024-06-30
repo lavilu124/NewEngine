@@ -1,6 +1,6 @@
  #pragma once
 #include <SFML/Graphics.hpp>
-#include "..//SystemLogic//Collision.hpp"
+#include "..//SystemLogic//GameLogic/Collision.hpp"
 
 class GameObject
 {

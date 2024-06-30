@@ -222,24 +222,24 @@
     <ClCompile Include="src\App\App.cpp" />
     <ClCompile Include="src\Engine\SystemLogic\LightSystem.cpp" />
     <ClCompile Include="src\App\Main.cpp" />
-    <ClCompile Include="src\Engine\Animation.cpp" />
+    <ClCompile Include="src\Engine\Objects\Animation.cpp" />
     <ClCompile Include="src\Engine\Objects\Camera.cpp" />
-    <ClCompile Include="src\Engine\SystemLogic\Collision.cpp" />
+    <ClCompile Include="src\Engine\SystemLogic\GameLogic\Collision.cpp" />
     <ClCompile Include="src\Engine\Objects\GameObject.cpp" />
     <ClCompile Include="src\Engine\SystemLogic\SystemManager.cpp" />
-    <ClCompile Include="src\Engine\SystemLogic\InputAction.cpp" />
+    <ClCompile Include="src\Engine\SystemLogic\GameLogic\InputAction.cpp" />
     <ClCompile Include="src\Engine\FileOperations\FileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\App\App.h" />
     <ClInclude Include="src\Engine\SystemLogic\LightSystem.h" />
-    <ClInclude Include="src\Engine\Animation.h" />
+    <ClInclude Include="src\Engine\Objects\Animation.h" />
     <ClInclude Include="src\Engine\Objects\Camera.h" />
-    <ClInclude Include="src\Engine\SystemLogic\Collision.hpp" />
+    <ClInclude Include="src\Engine\SystemLogic\GameLogic\Collision.hpp" />
     <ClInclude Include="src\Engine\Engine.h" />
     <ClInclude Include="src\Engine\Objects\GameObject.h" />
     <ClInclude Include="src\Engine\SystemLogic\SystemManager.h" />
-    <ClInclude Include="src\Engine\SystemLogic\InputAction.h" />
+    <ClInclude Include="src\Engine\SystemLogic\GameLogic\InputAction.h" />
     <ClInclude Include="src\Engine\FileOperations\FileManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

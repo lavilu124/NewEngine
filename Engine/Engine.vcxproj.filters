@@ -18,13 +18,13 @@
     <ClCompile Include="src\Engine\Objects\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\SystemLogic\Collision.cpp">
+    <ClCompile Include="src\Engine\SystemLogic\GameLogic\Collision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\SystemLogic\SystemManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\SystemLogic\InputAction.cpp">
+    <ClCompile Include="src\Engine\SystemLogic\GameLogic\InputAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\FileOperations\FileManager.cpp">
@@ -33,7 +33,7 @@
     <ClCompile Include="src\Engine\Objects\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Animation.cpp">
+    <ClCompile Include="src\Engine\Objects\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\App\Main.cpp">
@@ -53,13 +53,13 @@
     <ClInclude Include="src\Engine\Objects\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\SystemLogic\Collision.hpp">
+    <ClInclude Include="src\Engine\SystemLogic\GameLogic\Collision.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\SystemLogic\SystemManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\SystemLogic\InputAction.h">
+    <ClInclude Include="src\Engine\SystemLogic\GameLogic\InputAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\FileOperations\FileManager.h">
@@ -68,7 +68,7 @@
     <ClInclude Include="src\Engine\Objects\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Animation.h">
+    <ClInclude Include="src\Engine\Objects\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\SystemLogic\LightSystem.h">

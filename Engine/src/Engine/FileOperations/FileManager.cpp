@@ -1,13 +1,13 @@
 #include "FileManager.h"
+
 #include <fstream>
 #include <sstream>
-
 #include <filesystem>
 
 using std::filesystem::directory_iterator;
 
 std::map <std::string, Input::InputAction> FileManager::inputs;
-std::map <std::string, std::function<void()>> FileManager::m_functionMap;
+std::map <std::string, void(*)()> FileManager::m_functionMap;
 
 std::vector <sf::Texture> textures;
 std::vector <sf::SoundBuffer> buffers;
@@ -15,7 +15,7 @@ std::vector <sf::SoundBuffer> buffers;
 std::map <std::string, sf::Sound> FileManager::sounds;
 std::map <std::string, sf::Sprite> FileManager::sprites;
 
-void FileManager::AddInputFunc(std::string name, std::function<void()> function) {
+void FileManager::AddInputFunc(std::string name, void(*function)()) {
     m_functionMap[name] = function;
 }
 void FileManager::CreateInput(std::string Name, Input::inputType Type, Input::KeyType Key, Input::inputPart Part, std::string OnInput, std::string OffInput) {
@@ -24,8 +24,8 @@ void FileManager::CreateInput(std::string Name, Input::inputType Type, Input::Ke
         Key,
         Name,
         Part,
-        [=]() { m_functionMap[OnInput](); },
-        [=]() { m_functionMap[OffInput](); }
+        m_functionMap[OnInput],
+        m_functionMap[OffInput]
     ));
 }
 void FileManager::CreateInput(std::string Name, Input::inputType Type, Input::KeyType Key, Input::inputPart Part, std::string OnInput) {
@@ -34,7 +34,7 @@ void FileManager::CreateInput(std::string Name, Input::inputType Type, Input::Ke
         Key,
         Name,
         Part,
-        [=]() { m_functionMap[OnInput](); }
+        m_functionMap[OnInput]
     ));
 }
 void FileManager::LoadInput() {
