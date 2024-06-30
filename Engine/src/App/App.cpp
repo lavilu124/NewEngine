@@ -1,13 +1,12 @@
 #include "App.h"
 
-App::App(sf::RenderWindow& window, LightSystem& lightSystem, Camera& cam){
-	m_window = &window;
-	m_mainCam = &cam;
-	m_mainLightSystem = &lightSystem;
+App::App(float windowWidth, float windowHeight, float maxFPS) : m_lightSystem(400.f, windowWidth, windowHeight, sf::Color(50, 50, 50, 150)),
+	m_camera(windowWidth, windowHeight),
+	m_window(sf::VideoMode(windowWidth, windowHeight), "new game", sf::Style::Default){
 
-	m_mainCam->SetCam(window);
+	m_camera.SetCam(m_window);
 
-	window.setFramerateLimit(MAX_FPS);
+	m_window.setFramerateLimit(maxFPS);
 
 	SystemManager::StartUp();
 
@@ -33,26 +32,36 @@ void App::Run() {
 
 	shape.setFillColor(sf::Color(100, 250, 50));
 
-	while (m_window->isOpen()) {
-		InputFunc(*m_window);
+	while (m_window.isOpen()) {
+		sf::Event event;
+		while (m_window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed) {
+				m_window.close();
+			}
+			else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+				m_window.close();
+			}
+
+			SystemManager::RunInput(event);
+		}
 
 		SystemManager::Update();
 
-		m_mainCam->Update();
+		m_camera.Update();
 
-		sf::Vector2i mousePixelPos = sf::Mouse::getPosition(*m_window);
-		m_mainLightSystem->position = m_window->mapPixelToCoords(mousePixelPos);
+		sf::Vector2i mousePixelPos = sf::Mouse::getPosition(m_window);
+		m_lightSystem.position = m_window.mapPixelToCoords(mousePixelPos);
 
-		m_mainLightSystem->update();
+		m_lightSystem.update();
 
-		m_window->clear();
+		m_window.clear();
 
-		SystemManager::Render(*m_window);
+		SystemManager::Render(m_window);
 
-		m_window->draw(shape);
+		m_window.draw(shape);
 
-		m_mainLightSystem->draw(*m_window);
+		m_lightSystem.draw(m_window);
 
-		m_window->display();
+		m_window.display();
 	}
 }

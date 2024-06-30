@@ -1,5 +1,6 @@
 #include "LightSystem.h"
 #include <cmath> 
+#include <iostream>
 
 LightSystem::LightSystem(float size, sf::Vector2f windowSize, sf::Color darkness) {
     m_lightTexture.create(windowSize.x, windowSize.y);
@@ -45,6 +46,8 @@ LightSystem::LightSystem(float size, float width, float height, sf::Color darkne
     m_gradientTexture.loadFromImage(m_gradientImage);
     m_light.setTexture(&m_gradientTexture);
     m_darkness = darkness;
+
+    
 }
 
 void LightSystem::update() {
