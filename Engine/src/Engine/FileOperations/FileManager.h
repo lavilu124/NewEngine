@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "../SystemLogic/GameLogic/InputAction.h"
+#include "..//Objects/GameObject.h"
 
 class FileManager
 {
@@ -11,6 +12,8 @@ public:
 	static void AddInputFunc(std::string name, void(*function)());
 
 	static void SetPaths();
+
+	static std::vector<GameObject*> GetObjects(std::string name);
 
 public:
 	static std::map <std::string, Input::InputAction> inputs;

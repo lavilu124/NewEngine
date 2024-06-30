@@ -2,13 +2,11 @@
 #include "..//SystemLogic//SystemManager.h"
 
 
-GameObject::GameObject(const sf::Sprite& ObjectSprite, Collision::collisionLayer Layer) 
+GameObject::GameObject(const sf::Sprite& ObjectSprite, Collision::collisionLayer Layer, std::string& name) 
 	: m_objectSprite(ObjectSprite), m_layer(Layer), m_rotation(ObjectSprite.getRotation()), m_position(ObjectSprite.getPosition()), m_scale(ObjectSprite.getScale())
 {
-	
-	SystemManager::CreateGameObject(*this);
-    m_index = (int) SystemManager::objects.size() - 1;
-	
+    m_name = name;
+	m_index = SystemManager::CreateGameObject(*this);
 
 	SetCenter();
 }
@@ -54,13 +52,13 @@ void GameObject::SetCenter() {
 }
 
 void GameObject::Delete() {
-    if (m_index >= 0 && m_index < SystemManager::objects.size()) {
-        // Use unique_ptr to manage memory and set it to nullptr after deletion
-        SystemManager::objects[m_index] = nullptr;
 
-        SystemManager::objects.erase(SystemManager::objects.cbegin() + m_index);
-        SystemManager::objects.shrink_to_fit();
+    if (m_index != -1) {
+        SystemManager::DestroyObject(m_index);
+		return;
     }
+    SystemManager::DestroyObject(m_name);
+
 }
 
 void GameObject::OnCollision(GameObject* HitInfo) {}
@@ -209,4 +207,8 @@ void GameObject::Start() {
 }
 
 void GameObject::Update(float DeltaTime) {
+}
+
+std::string GameObject::GetName() {
+    return m_name;
 }

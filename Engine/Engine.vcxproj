@@ -219,6 +219,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Engine\SystemLogic\GameLogic\Scene.cpp" />
     <ClCompile Include="src\App\App.cpp" />
     <ClCompile Include="src\Engine\SystemLogic\LightSystem.cpp" />
     <ClCompile Include="src\App\Main.cpp" />
@@ -231,6 +232,7 @@
     <ClCompile Include="src\Engine\FileOperations\FileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\SystemLogic\GameLogic\Scene.h" />
     <ClInclude Include="src\App\App.h" />
     <ClInclude Include="src\Engine\SystemLogic\LightSystem.h" />
     <ClInclude Include="src\Engine\Objects\Animation.h" />

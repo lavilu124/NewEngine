@@ -1,8 +1,11 @@
 #include "FileManager.h"
+#include "..//SystemLogic/GameLogic/Collision.hpp"
 
 #include <fstream>
 #include <sstream>
 #include <filesystem>
+#include <json/json.h>
+#include <json/value.h>
 
 using std::filesystem::directory_iterator;
 
@@ -178,3 +181,50 @@ void FileManager::LoadAsset(std::string Path, std::string FileName) {
         sounds[FileName] = newSound;
     }
 }
+
+std::vector<GameObject*> FileManager::GetObjects(std::string name) {
+    
+    std::ifstream inputFile("../Resources\\Scenes" + name + ".json");
+    Json::Value actualJson;
+    Json::Reader Reader;
+
+    std::vector<GameObject*> returnVector;
+
+    //check if the input file exsist
+    if (!inputFile.is_open())
+        return returnVector;
+
+    //checing if the file can be read
+    if (!Reader.parse(inputFile, actualJson))
+        return returnVector;
+
+    //going over the json and reading all the data
+    for (int i = 0; i < actualJson.size(); i++) {
+        std::stringstream ss;
+        ss << i;
+        Json::Value currentObject = actualJson["object" + ss.str()];
+
+        //object values
+        sf::Vector2f position = sf::Vector2f(currentObject["position"][0].asFloat(), currentObject["position"][1].asFloat());
+        sf::Vector2f scale = sf::Vector2f(currentObject["scale"][0].asFloat(), currentObject["scale"][1].asFloat());
+        Collision::collisionLayer layer = static_cast<Collision::collisionLayer>(currentObject["layer"].asInt());
+        bool facingRight = currentObject["facingRight"].asBool();
+        float rotation = currentObject["rotation"].asFloat();
+        std::string spriteName = currentObject["spriteName"].asString();
+        std::string name = currentObject["name"].asString();
+
+		GameObject* newObject = new GameObject(sprites[spriteName], layer,  name);
+		newObject->SetPosition(position);
+		newObject->SetScale(scale);
+		newObject->SetRotation(rotation);
+        if (facingRight == false && newObject->GetScale().x < 0) {
+			newObject->Flip();
+        }
+        returnVector.push_back(newObject);
+    }
+    //close the file
+    inputFile.close();
+
+    return returnVector;
+}
+

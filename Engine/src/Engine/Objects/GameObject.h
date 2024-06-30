@@ -5,7 +5,7 @@
 class GameObject
 {
 public:
-	GameObject(const sf::Sprite& ObjectSprite, Collision::collisionLayer Layer = Collision::collisionLayer::COLLIDER);
+	GameObject(const sf::Sprite& ObjectSprite, Collision::collisionLayer Layer = Collision::collisionLayer::COLLIDER, std::string& );
 
 	int GetIndex() const;
 
@@ -32,6 +32,8 @@ public:
 	virtual void Start();
 	virtual void Update(float DeltaTime);
 
+	std::string GetName();
+
 private:
 	void SetCenter();
 
@@ -51,5 +53,10 @@ protected:
 
 	virtual void OnCollision(GameObject* HitInfo);
 	virtual void OnTrigger(GameObject* HitInfo);
+
+	bool m_isDeleted = false;
+	bool m_isFacingRight = true;
+
+	std::string m_name;
 };
 
