@@ -1,16 +1,16 @@
 #include "App.h"
 
 App::App(float windowWidth, float windowHeight, float maxFPS) : m_lightSystem(400.f, windowWidth, windowHeight, sf::Color(50, 50, 50, 150)),
-	m_camera(windowWidth, windowHeight),
 	m_window(sf::VideoMode(windowWidth, windowHeight), "new game", sf::Style::Default){
 
-	m_camera.SetCam(m_window);
 
 	m_window.setFramerateLimit(maxFPS);
 
-	SystemManager::StartUp();
+	SystemManager::StartUp(m_window);
+	
+	SystemManager::LoadScene("Scene1");
 
-	SystemManager::Start();
+	m_camera = &SystemManager::GetCamera();
 }
 
 void App::InputFunc(sf::RenderWindow& window) {
@@ -47,10 +47,9 @@ void App::Run() {
 
 		SystemManager::Update();
 
-		m_camera.Update();
+		m_camera->Update();
 
-		sf::Vector2i mousePixelPos = sf::Mouse::getPosition(m_window);
-		m_lightSystem.position = m_window.mapPixelToCoords(mousePixelPos);
+		m_lightSystem.position = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
 
 		m_lightSystem.update();
 
@@ -64,4 +63,6 @@ void App::Run() {
 
 		m_window.display();
 	}
+
+	SystemManager::ClearSystem();
 }

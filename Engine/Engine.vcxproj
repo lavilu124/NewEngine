@@ -102,7 +102,7 @@
       </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML\SFML-2.6.1\include;$(SolutionDir)dependencies\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML\SFML-2.6.1\include;$(SolutionDir)dependencies\include\json</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -133,7 +133,7 @@
       </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML\SFML-2.6.1\include;$(SolutionDir)dependencies\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML\SFML-2.6.1\include;$(SolutionDir)dependencies\include\json</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -164,7 +164,7 @@
       </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML\SFML-2.6.1\include;$(SolutionDir)dependencies\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML\SFML-2.6.1\include;$(SolutionDir)dependencies\include\json</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -195,7 +195,7 @@
       </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML\SFML-2.6.1\include;$(SolutionDir)dependencies\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML\SFML-2.6.1\include;$(SolutionDir)dependencies\include\json</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
@@ -219,6 +219,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Engine\FileOperations\json\jsoncpp.cpp" />
     <ClCompile Include="src\Engine\SystemLogic\GameLogic\Scene.cpp" />
     <ClCompile Include="src\App\App.cpp" />
     <ClCompile Include="src\Engine\SystemLogic\LightSystem.cpp" />
@@ -232,6 +233,8 @@
     <ClCompile Include="src\Engine\FileOperations\FileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\FileOperations\json\json-forwards.h" />
+    <ClInclude Include="src\Engine\FileOperations\json\json.h" />
     <ClInclude Include="src\Engine\SystemLogic\GameLogic\Scene.h" />
     <ClInclude Include="src\App\App.h" />
     <ClInclude Include="src\Engine\SystemLogic\LightSystem.h" />

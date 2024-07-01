@@ -2,10 +2,9 @@
 #include "..//SystemLogic//SystemManager.h"
 
 
-GameObject::GameObject(const sf::Sprite& ObjectSprite, Collision::collisionLayer Layer, std::string& name) 
-	: m_objectSprite(ObjectSprite), m_layer(Layer), m_rotation(ObjectSprite.getRotation()), m_position(ObjectSprite.getPosition()), m_scale(ObjectSprite.getScale())
+GameObject::GameObject(const sf::Sprite& ObjectSprite, std::string& name, Collision::collisionLayer Layer)
+	: m_objectSprite(ObjectSprite), m_layer(Layer), m_rotation(ObjectSprite.getRotation()), m_position(ObjectSprite.getPosition()), m_scale(ObjectSprite.getScale()), m_name(name)
 {
-    m_name = name;
 	m_index = SystemManager::CreateGameObject(*this);
 
 	SetCenter();

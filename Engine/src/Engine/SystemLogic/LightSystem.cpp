@@ -73,5 +73,7 @@ void LightSystem::update() {
 
 void LightSystem::draw(sf::RenderWindow& window) {
     sf::Sprite lightSprite(m_lightTexture.getTexture());
+    lightSprite.setOrigin(lightSprite.getLocalBounds().width / 2.0f, lightSprite.getLocalBounds().height / 2.0f);
+    lightSprite.setPosition(window.getView().getCenter());
     window.draw(lightSprite, sf::BlendMultiply);
 }

@@ -1,5 +1,4 @@
 #include "Camera.h"
-#include <iostream>
 
 Camera::Camera(const sf::Vector2f WinodwSize) : m_windowSize(WinodwSize) {
 	zoom = 1;

@@ -15,7 +15,7 @@ public:
 
 	void DestroyObject(int index);
 	void DestroyObject(std::string name);
-	bool CheckExisitingObject(std::string name);
+	int CheckExisitingObject(std::string name);
 
 	void LoadSceneFromFile(std::string Scene);
 

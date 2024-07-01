@@ -15,7 +15,7 @@ public:
 private:
 
 	sf::RenderWindow m_window;
-	Camera m_camera;
+	Camera* m_camera;
 	LightSystem m_lightSystem;
 };
 

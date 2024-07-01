@@ -4,8 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include <filesystem>
-#include <json/json.h>
-#include <json/value.h>
+#include "json/json.h"
+#include "value.h"
 
 using std::filesystem::directory_iterator;
 
@@ -184,7 +184,7 @@ void FileManager::LoadAsset(std::string Path, std::string FileName) {
 
 std::vector<GameObject*> FileManager::GetObjects(std::string name) {
     
-    std::ifstream inputFile("../Resources\\Scenes" + name + ".json");
+    std::ifstream inputFile("../Resources\\Scenes\\" + name + ".json");
     Json::Value actualJson;
     Json::Reader Reader;
 
@@ -205,23 +205,20 @@ std::vector<GameObject*> FileManager::GetObjects(std::string name) {
         Json::Value currentObject = actualJson["object" + ss.str()];
 
         //object values
-        sf::Vector2f position = sf::Vector2f(currentObject["position"][0].asFloat(), currentObject["position"][1].asFloat());
-        sf::Vector2f scale = sf::Vector2f(currentObject["scale"][0].asFloat(), currentObject["scale"][1].asFloat());
         Collision::collisionLayer layer = static_cast<Collision::collisionLayer>(currentObject["layer"].asInt());
-        bool facingRight = currentObject["facingRight"].asBool();
+        sf::Vector2f position = sf::Vector2f(currentObject["position"][0].asFloat(), currentObject["position"][1].asFloat());
         float rotation = currentObject["rotation"].asFloat();
+        sf::Vector2f scale = sf::Vector2f(currentObject["scale"][0].asFloat(), currentObject["scale"][1].asFloat());
         std::string spriteName = currentObject["spriteName"].asString();
         std::string name = currentObject["name"].asString();
 
-		GameObject* newObject = new GameObject(sprites[spriteName], layer,  name);
-		newObject->SetPosition(position);
-		newObject->SetScale(scale);
-		newObject->SetRotation(rotation);
-        if (facingRight == false && newObject->GetScale().x < 0) {
-			newObject->Flip();
-        }
-        returnVector.push_back(newObject);
-    }
+		
+        returnVector.push_back(new GameObject(sprites[spriteName], name, layer));
+        returnVector[returnVector.size() - 1]->SetPosition(position);
+		returnVector[returnVector.size() - 1]->SetScale(scale);
+		returnVector[returnVector.size() - 1]->SetRotation(rotation);
+	}
+
     //close the file
     inputFile.close();
 

@@ -5,7 +5,7 @@
 class GameObject
 {
 public:
-	GameObject(const sf::Sprite& ObjectSprite, Collision::collisionLayer Layer = Collision::collisionLayer::COLLIDER, std::string& );
+	GameObject(const sf::Sprite& ObjectSprite, std::string& name, Collision::collisionLayer Layer = Collision::collisionLayer::COLLIDER);
 
 	int GetIndex() const;
 
