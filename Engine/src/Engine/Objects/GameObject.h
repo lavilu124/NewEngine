@@ -41,7 +41,7 @@ private:
 	void HandleRotationChange(float NewRotation);
 	void HandleScaleChange(sf::Vector2f NewScale);
 
-protected: 
+private: 
 	Collision::collisionLayer m_layer;
 	sf::Vector2f m_position;
 	sf::Vector2f m_scale;

@@ -53,10 +53,10 @@ int SystemManager::CreateGameObject(GameObject& ob) {
 	return m_currentScene->addObject(&ob);
 }
 
-bool SystemManager::CheckForCollision(sf::Sprite sprite, int index, Collision::collisionLayer layerToCollideWith, GameObject* collideInfo) {
+bool SystemManager::CheckForCollision(sf::Sprite sprite, std::string name, Collision::collisionLayer layerToCollideWith, GameObject* collideInfo) {
     std::vector<GameObject*>& objects = m_currentScene->getObjects();
     for (int i = 0; i < objects.size(); ++i) {
-        if (i != index && (objects[i]->GetLayer() == layerToCollideWith || (layerToCollideWith == Collision::ALL && objects[i]->GetLayer() < 6))) {
+        if (objects[i]->GetName().compare(name) && (objects[i]->GetLayer() == layerToCollideWith || (layerToCollideWith == Collision::ALL && objects[i]->GetLayer() < 6))) {
             if (Collision::PixelPerfectCollision(sprite, objects[i]->GetSprite())) {
                 if (collideInfo != nullptr) {
                     collideInfo = objects[i];

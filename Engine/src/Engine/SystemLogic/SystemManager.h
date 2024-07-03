@@ -19,7 +19,7 @@ public:
 	static void DestroyObject(std::string name);
 	static void DestroyObject(int index);
 
-	static bool CheckForCollision(sf::Sprite sprite, int index = 0, Collision::collisionLayer layerToCollideWith = Collision::ALL, GameObject* collideInfo = nullptr);
+	static bool CheckForCollision(sf::Sprite sprite, std::string name, Collision::collisionLayer layerToCollideWith = Collision::ALL, GameObject* collideInfo = nullptr);
 
 	static void RunInput(sf::Event event);
 

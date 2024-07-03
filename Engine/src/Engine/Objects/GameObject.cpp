@@ -70,14 +70,15 @@ void GameObject::HandlePositionChange(sf::Vector2f NewPosition) {
     GameObject* HitInfo = this;
 
     //checking if the new position collides with anything
-    if (SystemManager::CheckForCollision(m_objectSprite, m_index, Collision::ALL, HitInfo)) {
-        if (HitInfo == this) {}
-        else if (m_layer < 6 && HitInfo->m_layer < 6) {
+    if (SystemManager::CheckForCollision(m_objectSprite, m_name, Collision::ALL, HitInfo)) {
+        if (m_layer < 6 && HitInfo->m_layer < 6) {
             OnCollision(HitInfo);
+            HitInfo->OnCollision(this);
 			m_objectSprite.setPosition(m_position);
         }
         else if (m_layer > 6) {
             OnTrigger(HitInfo);
+            HitInfo->OnTrigger(this);
             m_position = NewPosition;
             return;
         }
@@ -89,7 +90,7 @@ void GameObject::HandlePositionChange(sf::Vector2f NewPosition) {
 
         Collision::collisionLayer LayerToCollideWith = Collision::ALL;
         //checking collison for the movement along the x axies
-        if (!SystemManager::CheckForCollision(m_objectSprite, this->GetIndex(), LayerToCollideWith)) {
+        if (!SystemManager::CheckForCollision(m_objectSprite, m_name, LayerToCollideWith)) {
             m_position = m_objectSprite.getPosition();
             return;
         }
@@ -99,7 +100,7 @@ void GameObject::HandlePositionChange(sf::Vector2f NewPosition) {
         m_objectSprite.setPosition(TestY);
 
         //checking collison for the movement along the y axies
-        if (!SystemManager::CheckForCollision(m_objectSprite, this->GetIndex(), LayerToCollideWith)) {
+        if (!SystemManager::CheckForCollision(m_objectSprite, m_name, LayerToCollideWith)) {
             m_position = m_objectSprite.getPosition();
         }
     }
@@ -114,14 +115,16 @@ void GameObject::HandleRotationChange(float NewRotation) {
     GameObject* HitInfo = this;
 
     //checking if the new position collides with anything
-    if (SystemManager::CheckForCollision(m_objectSprite, this->GetIndex(), Collision::ALL, HitInfo)) {
+    if (SystemManager::CheckForCollision(m_objectSprite, m_name, Collision::ALL, HitInfo)) {
         if (HitInfo == this) {}
         else if (m_layer < 6 && HitInfo->m_layer < 6) {
             OnCollision(HitInfo);
+			HitInfo->OnCollision(this);
 			m_objectSprite.setRotation(m_rotation);
         }
         else if (m_layer > 6) {
             OnTrigger(HitInfo);
+			HitInfo->OnTrigger(this);
             m_rotation = NewRotation;
         }
     }
@@ -136,14 +139,16 @@ void GameObject::HandleScaleChange(sf::Vector2f NewScale) {
     GameObject* HitInfo = this;
 
     //checking if the new position collides with anything
-    if (SystemManager::CheckForCollision(m_objectSprite, this->GetIndex(), Collision::ALL, HitInfo)) {
+    if (SystemManager::CheckForCollision(m_objectSprite, m_name, Collision::ALL, HitInfo)) {
         if (HitInfo == this) {}
         else if (m_layer < 6 && HitInfo->m_layer < 6) {
             OnCollision(HitInfo);
+			HitInfo->OnCollision(this);
 			m_objectSprite.setScale(m_scale);
         }
         else if (m_layer > 6) {
             OnTrigger(HitInfo);
+			HitInfo->OnTrigger(this);
 			m_scale = NewScale;
             return;
         }
