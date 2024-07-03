@@ -16,6 +16,6 @@ private:
 
 	sf::RenderWindow m_window;
 	Camera* m_camera;
-	LightSystem m_lightSystem;
+	Light::LightSystem m_lightSystem;
 };
 

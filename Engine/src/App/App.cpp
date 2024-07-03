@@ -1,6 +1,6 @@
 #include "App.h"
 
-App::App(float windowWidth, float windowHeight, float maxFPS) : m_lightSystem(400.f, windowWidth, windowHeight, sf::Color(50, 50, 50, 150)),
+App::App(float windowWidth, float windowHeight, float maxFPS) : m_lightSystem(windowWidth, windowHeight, sf::Color(50, 50, 50, 150)),
 	m_window(sf::VideoMode(windowWidth, windowHeight), "new game", sf::Style::Default){
 
 
@@ -32,6 +32,9 @@ void App::Run() {
 
 	shape.setFillColor(sf::Color(100, 250, 50));
 
+	Light::DirectionalLight light(400, 90);
+	m_lightSystem.lights.push_back(&light);
+
 	while (m_window.isOpen()) {
 		sf::Event event;
 		while (m_window.pollEvent(event)) {
@@ -49,7 +52,7 @@ void App::Run() {
 
 		m_camera->Update();
 
-		m_lightSystem.position = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
+		light.position = sf::Vector2f(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
 
 		m_lightSystem.update();
 
