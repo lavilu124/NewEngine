@@ -10,7 +10,7 @@ float SystemManager::deltaTime = 0;
 Scene* SystemManager::m_currentScene;
 
 void SystemManager::StartUp(sf::RenderWindow& window) {
-    FileManager::SetPaths();
+    //FileManager::SetPaths();
     FileManager::LoadInput();
     
     deltaTime = 0;

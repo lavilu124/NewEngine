@@ -115,7 +115,7 @@ void FileManager::LoadInput() {
 }
 
 void FileManager::SetPaths() {
-    std::string Folders[] = { "\\Resources\\graphics", "\\Resources\\sounds" };
+    std::string Folders[] = {"\\Resources\\sounds" }; // "\\Resources\\graphics", 
     std::string path = std::filesystem::current_path().string();
     const std::string remove = "\\Engine";
 
@@ -145,10 +145,11 @@ int GetFileCount(std::string Directory) {
 }
 
 void FileManager::GetFilesInDir(std::string Dir) {
-    if (Dir.find("graphics") != std::string::npos) {
+   /* if (Dir.find("graphics") != std::string::npos) {
         textures.reserve(GetFileCount(Dir));
-	}
-    else if (Dir.find("sounds") != std::string::npos) {
+	}*/
+    /*else */
+    if (Dir.find("sounds") != std::string::npos) {
         buffers.reserve(GetFileCount(Dir));
     }
 
@@ -198,6 +199,17 @@ std::vector<GameObject*> FileManager::GetObjects(std::string name) {
     if (!Reader.parse(inputFile, actualJson))
         return returnVector;
 
+	sprites.clear();
+
+    std::string path = std::filesystem::current_path().string();
+    const std::string remove = "\\Engine";
+
+    const std::string::size_type pos = path.find(remove);
+    if (pos != std::string::npos) {
+        path.erase(pos, remove.length());
+    }
+
+
     //going over the json and reading all the data
     for (int i = 0; i < actualJson.size(); i++) {
         std::stringstream ss;
@@ -212,6 +224,7 @@ std::vector<GameObject*> FileManager::GetObjects(std::string name) {
         std::string spriteName = currentObject["spriteName"].asString();
         std::string name = currentObject["name"].asString();
 
+        LoadAsset(path + "\\Resources\\graphics\\" + spriteName, spriteName);
 		
         returnVector.push_back(new GameObject(sprites[spriteName], name, layer));
         returnVector[returnVector.size() - 1]->SetPosition(position);
